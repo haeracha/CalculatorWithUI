@@ -189,7 +189,7 @@ class ViewController: UIViewController {
         equalsButton.backgroundColor = .orange
         equalsButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 30)
         equalsButton.layer.cornerRadius = 40
-        equalsButton.addTarget(self, action: #selector(equalsButtonTapped(_:)), for: .touchDown)
+        equalsButton.addTarget(self, action: #selector(equalsButtonTapped), for: .touchDown)
         
         
         [numberLabel, v1]
@@ -213,8 +213,8 @@ class ViewController: UIViewController {
     
     @objc
     private func equalsButtonTapped() {
-        guard let before = Double(beforeNumber), let now = Double(currentNumber) else { return }
-        var result: Double = 0
+        guard let before = Int(beforeNumber), let now = Int(currentNumber) else { return }
+        var result = 0
         switch operation {
         case "+":
             result = before + now
@@ -233,60 +233,54 @@ class ViewController: UIViewController {
         numberLabel.text = currentNumber
     }
     
-    //            private func configureButton(button: UIButton, title: String, color: UIColor = UIColor(red: 58/255, green: 58/255, blue: 58/255, alpha: 1.0), action: Selector? = #selector(numberButtonTapped( :))) {
-    //                button.setTitle(title, for: .normal)
-    //                button.setTitleColor(.white, for: .normal)
-    //                button.backgroundColor = color
-    //                button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 30)
-    //                button.layer.cornerRadius = 40
-    //                if let action = action {
-    //                    button.addTarget(self, action: action, for: .touchDown)
-    //                }
-    //            }
-    //
-//                @objc
-//                private func numberButtonTapped(_ sender: UIButton) {
-//                    guard let title = sender.currentTitle else { return }
-//                    if currentNumber == "0" {
-//                        currentNumber = title
-//                    } else {
-//                        currentNumber += title
-//                    }
-//                    numberLabel.text = currentNumber
-//                }
-//                @objc
-//                private func resetButtonTapped() {
-//                    currentNumber = "0"
-//                    beforeNumber = ""
-//                    operation = ""
-//                    numberLabel.text = currentNumber
-//                }
-//            }
-//                @objc
-//            private func operationButtonTapped(_ sender: UIButton) {
-//                guard let op = sender.currentTitle else { return }
-//                if !currentNumber.isEmpty {
-//                    beforeNumber = currentNumber
-//                    currentNumber = "0"
-//                    operation = op
-//                }
-//            }
-    
-    @objc func numberButtonTapped(sender: UIButton) {
-        
+    private func configureButton(button: UIButton, title: String, color: UIColor = UIColor(red: 58/255, green: 58/255, blue: 58/255, alpha: 1.0), action: Selector? = #selector(numberButtonTapped(_:))) {
+        button.setTitle(title, for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.backgroundColor = color
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 30)
+        button.layer.cornerRadius = 40
+        if let action = action {
+            button.addTarget(self, action: action, for: .touchDown)
+        }
     }
     
-    @objc func resetButtonTapped(sender: UIButton) {
-        
+    func calculate(expression: String) -> Int? {
+        let expression = NSExpression(format: expression)
+        if let result = expression.expressionValue(with: nil, context: nil) as? Int {
+            return result
+        } else {
+            return nil
+        }
     }
-    @objc func operationButtonTapped(_ sender: UIButton) {
-        
+    
+    @objc
+    private func numberButtonTapped(_ sender: UIButton) {
+        guard let title = sender.currentTitle else { return }
+        if currentNumber == "0" {
+            currentNumber = title
+        } else {
+            currentNumber += title
+        }
+        numberLabel.text = currentNumber
     }
-    @objc func equalsButtonTapped(_ sender: UIButton) {
-        
+    @objc
+    private func resetButtonTapped() {
+        currentNumber = "0"
+        beforeNumber = ""
+        operation = ""
+        numberLabel.text = currentNumber
+    }
+    
+    @objc
+    private func operationButtonTapped(_ sender: UIButton) {
+    guard let op = sender.currentTitle else { return }
+        if !currentNumber.isEmpty {
+        beforeNumber = currentNumber
+        currentNumber = "0"
+        operation = op
     }
 }
-
+}
 
 #Preview {
     let vc = ViewController()
