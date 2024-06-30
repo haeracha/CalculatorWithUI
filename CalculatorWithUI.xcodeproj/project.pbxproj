@@ -16,6 +16,7 @@
 		CB61FE992C31047D0048FC52 /* CalculatorWithUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB61FE982C31047D0048FC52 /* CalculatorWithUITests.swift */; };
 		CB61FEA32C31047D0048FC52 /* CalculatorWithUIUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB61FEA22C31047D0048FC52 /* CalculatorWithUIUITests.swift */; };
 		CB61FEA52C31047D0048FC52 /* CalculatorWithUIUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB61FEA42C31047D0048FC52 /* CalculatorWithUIUITestsLaunchTests.swift */; };
+		CB61FEB32C3104B30048FC52 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = CB61FEB22C3104B30048FC52 /* SnapKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +35,19 @@
 			remoteInfo = CalculatorWithUI;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		CB61FEB72C3105010048FC52 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		CB61FE7E2C31047B0048FC52 /* CalculatorWithUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CalculatorWithUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -56,6 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CB61FEB32C3104B30048FC52 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,12 +152,16 @@
 				CB61FE7A2C31047B0048FC52 /* Sources */,
 				CB61FE7B2C31047B0048FC52 /* Frameworks */,
 				CB61FE7C2C31047B0048FC52 /* Resources */,
+				CB61FEB72C3105010048FC52 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = CalculatorWithUI;
+			packageProductDependencies = (
+				CB61FEB22C3104B30048FC52 /* SnapKit */,
+			);
 			productName = CalculatorWithUI;
 			productReference = CB61FE7E2C31047B0048FC52 /* CalculatorWithUI.app */;
 			productType = "com.apple.product-type.application";
@@ -215,6 +234,9 @@
 				Base,
 			);
 			mainGroup = CB61FE752C31047B0048FC52;
+			packageReferences = (
+				CB61FEB12C3104B30048FC52 /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			productRefGroup = CB61FE7F2C31047B0048FC52 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -607,6 +629,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		CB61FEB12C3104B30048FC52 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.7.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		CB61FEB22C3104B30048FC52 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CB61FEB12C3104B30048FC52 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = CB61FE762C31047B0048FC52 /* Project object */;
 }
